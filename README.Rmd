@@ -24,9 +24,9 @@ PetFindr provides an R interface for the [Petfinder.com API (V2)](https://www.pe
 
 ## Installation
 
-You can install the  the development version from [GitHub](https://github.com/) with:
+You can install the the development version from [GitHub](https://github.com/) with:
 
-``` r
+```{r, eval = F}
 # install.packages("devtools")
 devtools::install_github("earl88/PetFindr")
 ```
@@ -38,6 +38,7 @@ devtools::install_github("earl88/PetFindr")
 Welcome to PetFindr! Before you can search for sweet puppers and kitty cats in R, you'll need to register for the official PetFinder API (V2) at https://www.petfinder.com/developers/.
 
 ```{r, eval = FALSE}
+library(PetFindr)
 pf_setup()
 ```
 
@@ -90,8 +91,26 @@ puppies <- pf_find_pets(token, type = "dog", age = "baby", gender = "female")
 # View images of horses near Dallas, TX
 pf_find_pets(token, type = "horse", location = "Dallas, TX", sort = "distance") %>%
   pf_view_photos(., size = "small")
+```
 
+
+```{r  out.width = "40%",echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/earl88/PetFindr/master/inst/FinalPresentation/images/horsepics.gif")
+```
+
+
+```{r, echo = T, eval = F}
 # Map the locations of small & furry animals
-pf_find_pets(token, type = "Small & furry", page = 1:2) %>%
+pf_find_pets(token, type = "Small & furry", page = 1) %>%
   pf_map_locations(token, .)
 ```
+
+
+Interactive exploration of the package could be done with Shiny.
+
+```{r, echo = T, eval = F}
+library(shiny)
+pf_run_Shiny()
+```
+
+For more details, see the [vignette](https://earl88.github.io/PetFindr/articles/using-petfindr.html).
